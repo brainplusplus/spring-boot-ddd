@@ -1,0 +1,28 @@
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Form Kecamatan</h3>
+            </div><!-- /.box-header -->
+            <!-- form start -->
+            <form id="formData" role="form" method="post" enctype="multipart/form-data">
+                <div class="box-body">
+                    <div class="form-group">
+                        <input type="hidden" name="id" id="id" value="0"/>
+                        <label>Kode:</label>
+                        <input id="kode" name="kode" data-role="text" class="form-control" placeholder="Enter Kode"/>
+                        <label>Nama:</label>
+                        <input id="nama" name="nama" data-role="text" class="form-control" placeholder="Enter Name"/>
+                    </div>
+                </div><!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="backToListData();">Back</button>
+                </div>
+            </form>
+        </div><!-- /.box -->
+    </div>
+</div>

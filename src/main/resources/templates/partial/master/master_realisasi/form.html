@@ -1,0 +1,92 @@
+<!-- form input Paket -->
+<div class="row">
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Form Serapan Realisasi</h3>
+            </div><!-- /.box-header -->
+            <!-- begin info lokasi -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Info Lokasi</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped table-bordered table-hover">
+                        <tbody>
+                        <tr>
+                            <th width="20%">Provinsi</th>
+                            <td width="80%" th:text="${propinsi}"></td>
+                        </tr>
+                        <tr>
+                            <th width="20%">Kabupaten</th>
+                            <td width="80%" th:text="${kabupaten}"></td>
+                        </tr>
+                        <tr>
+                            <th width="20%">Lokasi</th>
+                            <td width="80%" th:utext="${lokasi}"></td>
+                        </tr>
+                        <tr>
+                            <th width="20%">Alamat</th>
+                            <td width="80%" th:text="${alamat}"></td>
+                        </tr>
+                        <tr>
+                            <th width="20%">No Kontrak</th>
+                            <td width="80%" th:text="${no_kontrak}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end of info lokasi -->
+
+            <!-- form start -->
+            <form id="formData" role="form" method="post" enctype="multipart/form-data">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>Jenis Realisasi<span class="required" aria-required="true"> * </span> :</label>
+                        <select class="form-control" id="jenis_realisasi" name="jenisRealisasi">
+                            <option th:each="entry : ${jenisRealisasiList.entrySet()}" th:value="${entry.key}" th:text="${entry.value}"></option>
+                        </select>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Kop Realisasi<span class="required" aria-required="true"> * </span> :</label>
+                        <input id="kop_realisasi" name="kopRealisasi" data-role="text" class="form-control" placeholder="Kop Realisasi"/>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Realisasi <span class="required" aria-required="true"> * </span> :</label>
+                        <input id="tanggal_realisasi" type="date" name="tanggalRealisasi" data-role="text" class="form-control" placeholder="Tanggal Realisasi"/>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Persen Realisasi<span class="required" aria-required="true"> * </span> :</label>
+                        <input id="persen_realisasi" type="number" name="persenRealisasi" data-role="text" class="form-control" placeholder="Persen Realisasi"/>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Total Persen Realisasi<span class="required" aria-required="true"> * </span> :</label>
+                        <input id="total_persen_realisasi" type="number" name="totalPersenRealisasi" data-role="text" class="form-control" placeholder="Total Persen Realisasi"/>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Nilai Realisasi<span class="required" aria-required="true"> * </span> :</label>
+                        <input id="nilai_realisasi" type="number" name="nilaiRealisasi" data-role="text" class="form-control" placeholder="Nilai Realisasi"/>
+                        <span class="help-block"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Keterangan<span class="required" aria-required="true"> * </span> :</label>
+                        <textarea id="keterangan" name="keterangan" data-role="text" class="form-control" rows="5" placeholder="Keterangan"></textarea>
+                        <span class="help-block"></span>
+                    </div>
+                </div><!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button type="button" class="btn btn-primary" id="submit_form"><i class="glyphicon glyphicon-floppy-disk"></i> Save</button>
+                    <button type="button" class="btn btn-default" id="back_to_list_data"><i class="glyphicon glyphicon-remove"></i> Back</button>
+                </div>
+            </form>
+        </div><!-- /.box -->
+    </div>
+</div>

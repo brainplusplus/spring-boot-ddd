@@ -1,0 +1,86 @@
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Form User</h3>
+            </div><!-- /.box-header -->
+            <!-- form start -->
+            <form id="formData" role="form" method="post" enctype="multipart/form-data">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>Username :</label>
+                        <input type="hidden" name="id" id="id" value="0"/>
+                        <input id="username" name="username" data-role="text" class="form-control" placeholder="Enter Username"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Password :</label>
+                        <input id="password" name="password" type="password" data-role="text" class="form-control" placeholder="Enter Password"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama :</label>
+                        <input id="nama" name="realName" type="text" data-role="text" class="form-control" placeholder="Nama User"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat Email :</label>
+                        <input id="email" name="email" type="email" data-role="text" class="form-control" placeholder="Pilih Tipe Aset"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Nomor Telepon :</label>
+                        <input id="telepon" name="telepon" type="text" data-role="text" class="form-control" placeholder="Telepon"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Tempat Lahir :</label>
+                        <input id="tempat_lahir" name="tempatLahir" type="text" data-role="text" class="form-control" placeholder="Tempat Lahir"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Tanggal Lahir :</label>
+                        <input id="tanggal_lahir" name="tanggalLahir" type="date" data-role="text" class="form-control" placeholder="Tanggal lahir"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Type :</label>
+                        <select id="role_combo" name="role_combo" data-role="combo" class="form-control" placeholder="Role User"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Wilayah :</label>
+                        <select id="wilayah_combo" name="wilayah_combo" type="combo" data-role="text" class="form-control" placeholder="Wilayah"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Dirjen :</label>
+                        <input id="dirjen" name="dirjen" type="text" data-role="text" class="form-control" placeholder="Dirjen"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Jabatan :</label>
+                        <input id="jabatan" name="jabatan" type="text" data-role="text" class="form-control" placeholder="Jabatan"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Kode :</label>
+                        <input id="kode" name="kode" type="text" data-role="text" class="form-control" placeholder="Kode"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Active :</label>
+                        <select id="active" name="active" type="text" class="form-control">
+                            <option selected="selected" disabled="disabled">-- Pilih Status --</option>
+                            <option value="false">Tidak Aktif</option>
+                            <option value="true">Aktif</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Logo :</label>
+                        <div id="gbr" hidden="hidden">
+                            <img id="img_gambar" type="file" style="width: 150px; height: 150px"/>
+                            <a onclick="hapusGbr()">Ganti Gambar</a>
+                        </div>
+                        <input id="logo" name="logo_upload" type="file" data-role="text" class="form-control" placeholder="Gambar"/>
+                    </div>
+                </div><!-- /.box-body -->
+
+                <div class="box-footer">
+                    <button type="button" class="btn btn-primary" onclick="submitForm()">Save</button>
+                    <button type="button" class="btn btn-primary" onclick="backToListData();">Back</button>
+                </div>
+            </form>
+        </div><!-- /.box -->
+    </div>
+</div>

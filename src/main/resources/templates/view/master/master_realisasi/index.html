@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Master Page</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div th:fragment="footer" th:remove="tag">
+            <script th:src="@{~/templates/themes/apps/scripts/masterdata.js}"></script>
+            <script th:src="@{~/js/master/master_realisasi/index.js}"></script>
+        </div>
+        <div th:fragment="content">
+            <div id="containerFromAndGrid">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="">
+                            <div class="box-header">
+
+                                <h3 class="box-title"><i class="fa fa-arrow-right"></i> Serapan Realisasi</h3>
+                                <!-- begin info lokasi -->
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Info Lokasi</h3>
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <th width="20%">Provinsi</th>
+                                                    <td width="80%" th:text="${propinsi}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="20%">Kabupaten</th>
+                                                    <td width="80%" th:text="${kabupaten}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="20%">Lokasi</th>
+                                                    <td width="80%" th:utext="${lokasi}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="20%">Alamat</th>
+                                                    <td width="80%" th:text="${alamat}"></td>
+                                                </tr>
+                                                <tr>
+                                                    <th width="20%">No Kontrak</th>
+                                                    <td width="80%" th:text="${no_kontrak}"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <!-- end of info lokasi -->
+
+
+
+                                <form role="form" style="margin-bottom: 10px;">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <button id="create_data" type="button" class="btn btn-primary" ><i class="fa fa-plus"></i> Create</button>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <input type="text" class="form-control" data-role="text" id="search" name="search" placeholder="Masukkan Jenis / Kop Realisasi / Deskripsi" />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button id="search_data" type="button" class="btn btn-primary btn-block"><i class="fa fa-search"></i> Search</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <table id="grid" class="table table-striped dt-responsive table-bordered" width="100%" th:attr="data-key-id=${idLokasi}">
+                                        <thead>
+                                            <tr>
+                                                <th field="jenis_realisasi">Jenis Realisasi</th>
+                                                <th field="kop_realisasi">Kop Realisasi</th>
+                                                <th field="tanggal_realisasi">Tanggal Realisasi</th>
+                                                <th field="persen_realisasi" title="Persentase Realisasi (%)">Persentase (%)</th>
+                                                <th field="total_persen_realisasi" title="Total Persentase Realisasi (%)">Total Persentase (%)</th>
+                                                <th field="nilai_realisasi" title="Nilai Realisasi (Rp)">Nilai</th>
+                                                <th field="keterangan" title="Keterangan Realisasi Serapan">Keterangan</th>
+                                                <th style="width: 150px !important;">Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <!-- /.box-body -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+            </div>
+
+            <div id="containerFormData" style="">
+                <!-- form goes here -->
+            </div>
+        </div>
+    </body>
+</html>

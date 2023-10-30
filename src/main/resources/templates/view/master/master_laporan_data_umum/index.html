@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Laporan Data Umum</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            .img{
+                width: 280px;
+                height: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div th:fragment="footer" th:remove="tag">
+            <script th:src="@{~/js/master/master_laporan_data_umum/index.js}"></script>
+        </div>
+        <div th:fragment="content">
+            <a href="javascript:void(0)" onclick="lokasiSurvey()" class="btn red btn-default btn-outline"><i class="fa fa-backward"></i>&nbsp;Kembali</a>
+            <a href="javascript:void(0)" onclick="printDiv('printDiv')" class="btn dark btn-default btn-outline"><i class="fa fa-print"></i>&nbsp;Print</a>
+            <div id="printDiv">
+                <center>
+                    <h2>Data Umum Lokasi <br/> <span th:text="${lokasi.namaLokasi}"></span> <span th:text="${lokasi.idPaket.namaPaket}"></span></h2>
+                </center>
+                <hr/>
+                <div class="col-md-5">
+                    <table border="1" style="font-size:16px" class="table table-bordered table-hover table-condensed">
+                        <tr><td style="background:#ccc">Alamat</td><td>:</td><td>&nbsp;<span th:utext="${lokasi.alamat}"></span></td></tr>
+                        <tr><td style="background:#ccc">Provinsi</td><td>:</td><td>&nbsp;<span th:text="${lokasi.kodeProv.nama}"></span></td></tr>
+                        <tr><td style="background:#ccc">Kabupaten</td><td>:</td><td>&nbsp;<span th:text="${lokasi.kodeKab.namaKab}"></span></td></tr>
+                        <tr><td style="background:#ccc">Nama Surveyor</td><td>:</td><td>&nbsp;<span th:text="${lokasi.namaSurveyor}"></span></td></tr>
+                        <tr><td style="background:#ccc">Nama Konsultan MK</td><td>:</td><td>&nbsp;<span th:text="${lokasi.namaKonsultanMk}"></span></td></tr>
+                        <tr><td style="background:#ccc">Team leader</td><td>:</td><td>&nbsp;<span th:text="${lokasi.teamLeader}"></span></td></tr>
+                        <tr><td style="background:#ccc">Co Leader</td><td>:</td><td>&nbsp;<span th:text="${lokasi.coLeader}"></span></td></tr>
+                        <tr><td style="background:#ccc">Tanggal Survey</td><td>:</td><td>&nbsp;<span th:text="${lokasi.tanggalSurvey}"></span></td></tr>
+                        <tr><td style="background:#ccc">Kontraktor Pelaksana</td><td>:</td><td>&nbsp;<span th:text="${lokasi.kontraktorPelaksana}"></span></td></tr>
+                        <tr><td style="background:#ccc">PM</td><td>:</td><td>&nbsp;<span th:text="${lokasi.pm}"></span></td></tr>
+                        <tr><td style="background:#ccc">SM</td><td>:</td><td>&nbsp;<span th:text="${lokasi.sm}"></span></td></tr>
+                        <tr><td style="background:#ccc">Nama Lembaga Pengusul</td><td>:</td><td>&nbsp;<span th:text="${lokasi.namaLembagaPengusul}"></span></td></tr>
+                        <tr><td style="background:#ccc">Kontak Person</td><td>:</td><td>&nbsp;<span th:text="${lokasi.kontakPerson}"></span></td></tr>
+                        <tr><td style="background:#ccc">Target Grup</td><td>:</td><td>&nbsp;<span th:text="${lokasi.targetGrup}"></span></td></tr>
+                        <tr><td style="background:#ccc">Jumlah TB</td><td>:</td><td>&nbsp;<span th:text="${lokasi.jmlTb}"></span></td></tr>
+                        <tr><td style="background:#ccc">Dimensi Lantai</td><td>:</td><td>&nbsp;<span th:text="${lokasi.dimensiLantai}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Peruntukan</td><td>:</td><td>&nbsp;<span th:text="${lokasi.peruntukan}"></span></td></tr>
+                        <tr><td style="background:#ccc">Unit</td><td>:</td><td>&nbsp;<span th:text="${lokasi.unit}"></span></td></tr>
+                        <tr><td style="background:#ccc">Tower</td><td>:</td><td>&nbsp;<span th:text="${lokasi.tower}"></span></td></tr>
+                        <tr><td style="background:#ccc">Lokasi</td><td>:</td><td>&nbsp;<span th:text="${lokasi.namaLokasi}"></span></td></tr>
+                        <tr><td style="background:#ccc">HPS</td><td>:</td><td>&nbsp;<span th:text="${lokasi.hps}"></span></td></tr>
+                        <tr><td style="background:#ccc">No Paket Fisik</td><td>:</td><td>&nbsp;<span th:text="${lokasi.noPaketFisik}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Lebar Jalan kondisi Akses</td><td>:</td><td>&nbsp;<span th:text="${lokasi.lebarJalanKondisiAkses}"></span></td></tr>
+                        <tr><td style="background:#ccc">Sumber Listrik Jarak Lokasi</td><td>:</td><td>&nbsp;<span th:text="${lokasi.sumberListrikJarakLokasi}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Sumber Air Jarak Lokasi</td><td>:</td><td>&nbsp;<span th:text="${lokasi.sumberAirJarakLokasi}"></span></td></tr>
+                        <tr><td style="background:#ccc">Jarak Dengan Pusat Kegiatan</td><td>:</td><td>&nbsp;<span th:text="${lokasi.jarakDenganPusatKegiatan}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Luas Lahan Usulan</td><td>:</td><td>&nbsp;<span th:text="${lokasi.luasLahanUsulan}"></span></td></tr>
+                        <tr><td style="background:#ccc">Status Tanah</td><td>:</td><td>&nbsp;<span th:text="${lokasi.statusTanah}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Jenis Tanah</td><td>:</td><td>&nbsp;<span th:text="${lokasi.jenisTanah}"></span></td></tr>
+                        <tr><td style="background:#ccc">Kondisi Fisik</td><td>:</td><td>&nbsp;<span th:text="${lokasi.kondisiFisik}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Keterangan</td><td>:</td><td>&nbsp;<span th:text="${lokasi.keterangan}"></span></td></tr>
+                        <tr><td style="background:#ccc">Rekomendasi</td><td>:</td><td>&nbsp;<span th:text="${lokasi.rekomendasi}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">No Kontrak</td><td>:</td><td>&nbsp;<span th:text="${lokasi.noKontrak}"></span></td></tr>
+                        <tr><td style="background:#ccc">Tanggal Kontrak</td><td>:</td><td>&nbsp;<span th:text="${lokasi.tanggalKontrak}"></span></td></tr>
+                        <tr><td style="background:#ccc">Tanggal Akhir Kontrak</td><td>:</td><td>&nbsp;<span th:text="${lokasi.tanggalAkhirKontrak}"></span></td></tr>
+                        <tr><td style="background:#ccc">No SPMK</td><td>:</td><td>&nbsp;<span th:text="${lokasi.noSpmk}"></span></td></tr>
+                        <tr><td style="background:#ccc">Tanggal SPMK</td><td>:</td><td>&nbsp;<span th:text="${lokasi.tanggalSpmk}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Nilai Kontrak</td><td>:</td><td>&nbsp;<span th:text="${lokasi.nilaiKontrak}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Amandemen Kontrak</td><td>:</td><td>&nbsp;<span th:text="${lokasi.amandemenKontrak1}"></span></td></tr>
+                        <tr><td style="background:#ccc">Nilai Addendum</td><td>:</td><td>&nbsp;<span th:text="${lokasi.nilaiAddendum1}"></span></td></tr>
+
+
+                        <tr><td style="background:#ccc">Lembaga Penerima</td><td>:</td><td>&nbsp;<span th:text="${lokasi.lembagaPenerima}"></span></td></tr>
+                        <tr><td style="background:#ccc">Type Bangunan</td><td>:</td><td>&nbsp;<span th:text="${lokasi.typeBangunan}"></span></td></tr>
+
+                        <tr><td style="background:#ccc">Jumlah Lantai</td><td>:</td><td>&nbsp;<span th:text="${lokasi.jumlahLantai}"></span></td></tr>
+                        <tr><td style="background:#ccc">Jangka Waktu Pelaksanaan</td><td>:</td><td>&nbsp;<span th:text="${lokasi.jangkaWaktuPelaksanaan}"></span></td></tr>
+                    </table>
+                </div>
+                <div class="col-md-7">
+                    <h4>Foto Survey</h4>
+                    <div class="table-scrollable table-scrollable-borderless">
+                        <table style="margin-top:10px;margin-bottom:10px " class="table table-light">
+                            <tr th:each="element,status : ${gambar}" th:remove="tag">
+                            <div th:if="${status.index % 2 ==0}" th:remove="tag" th:utext="${trBuka}"></div>
+                            <td style="padding: 5px;">
+                                <table border="1" align="center">
+                                    <tr valign="top">
+                                        <td align="center">
+                                            <a class="example-image-link" th:href="${element.getFile()}" data-lightbox="example-set" th:data-title="${element.getKeterangan}"><img th:src="${element.getFile()}"  class="img"/></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <div th:if="${ (status.index +1) % 2 ==0 || (status.index+1) == jmlgambar}" th:remove="tag" th:utext="${trTutup}"></div>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Rangkuman Laporan Mingguan</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div th:fragment="footer" th:remove="tag">
+            <script th:src="@{~/js/master/master_laporan_mingguan/laporan.js}"></script>
+        </div>
+        <div th:fragment="content">
+            <a href="javascript:void(0)" onclick="laporanMingguan()" class="btn btn-default"> Laporan Mingguan</a>
+            <a href="javascript:void(0)" onclick="printDiv('printDiv')" class="btn btn-default"> Print</a>
+            <a href="javascript:window.history.go(-1)" class="btn btn-default"> Kembali</a>
+            <br/><br/>
+            <div id="printDiv">
+            <div id="lokasiId" style="display:none;" th:text="${lokasi.id}"></div>
+            <div id="laporanKe" style="display:none;" th:text="${laporan.laporanPeriodeMingguKe}"></div>
+
+            <table border="1" style="width:100%">
+                <tr>
+                    <td colspan="9" style="text-align:center;background-color:#315a3c;color:#fff">RANGKUMAN LAPORAN MINGGUAN</td>
+                </tr>
+                <tr>
+                    <td colspan="6" valign="top">
+                        <table >
+                            <tr>
+                                <td>PEKERJAAN</td><td>:</td>
+                                <td ><span th:text="${lokasi.kategoriKegiatan}"></span></td>
+                                <td style="width:100px">&nbsp;</td>
+                                <td>LAPORAN MINGGU KE</td><td>:</td>
+                                <td><span th:text="${laporan.laporanPeriodeMingguKe}"></span></td>
+                                <td>Alamat</td><td>:</td>
+                                <td><p th:utext="${lokasi.alamat}"></p></td>
+                            </tr>
+
+                            <tr>
+                                <td>NO.PAKET</td>
+                                <td>:</td>
+                                <td><span th:text="${paket.namaPaket}"></span></td>
+                                <td>&nbsp;</td>
+                                <td>HARI/TGL</td><td>:</td><td><span th:text="${laporan.tanggalDari}"></span> - <span th:text="${laporan.tanggalSampai}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>LOKASI</td>
+                                <td>:</td>
+                                <td><span th:text="${lokasi.namaLokasi}"></span></td>
+                                <td>&nbsp;</td>
+                                <td>Koordinat</td><td>:</td>
+
+                                <td><span th:text="${lokasi.lattitude}"></span>,<span th:text="${lokasi.longitude}"></span></td>
+
+                            </tr>
+                            <tr>
+
+
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="3" >
+                        <table style="text-align:center;width:100%">
+                            <tr>
+                                <td><img th:src="@{~/templates/themes/img/logo_kostrad_mini.png}" width="32"/></td>
+                                <td colspan="7"><span style="font-size:16px;font-weight:bold">PENGGUNA JASA</span><br/></td>
+                                <td><img th:src="@{~/templates/themes/img/logo_zeni_mini.png}" width="32"/></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><center>ZENI KOSTRAD</center></td>
+                                <td></td>
+                            </tr>
+
+                        </table>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align:center;background-color:#315a3c;color:#fff">
+                        PROGRESS PEKERJAAN
+                    </td>
+                    <td colspan="3" style="text-align:center;background-color:#315a3c;color:#fff">
+                        AKTIFITAS MINGGU INI
+                    </td>
+                    <td colspan="3" style="text-align:center;background-color:#315a3c;color:#fff">
+                        DATA UMUM
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align:center" valign="top">
+<!--                        <table style="width:100%" border="1">
+                            <tr style="background-color:#c3d69b">
+                                <td colspan="3">BOBOT KESELURUHAN</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Persiapan</td><td><span th:text="${laporan.pekerjaanPersiapanRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Bongkaran</td><td><span th:text="${laporan.pekerjaanBongkaranRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Pasang Dinding dan Lantai</td><td><span th:text="${laporan.pekerjaanPasangDindingLantaiRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Kusen, Pintu/Jendela dan Alat Penggantung</td><td><span th:text="${laporan.pekerjaanKusenPintuJendelaPenggantungRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Atap dan Plafoud</td><td><span th:text="${laporan.pekerjaanAtapPlafoundRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Inst. Listrik, Air dan Sanitair</td><td><span th:text="${laporan.pekerjaanListrikAirSanitairRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Pengecetan</td><td><span th:text="${laporan.pekerjaanPengecetanRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Garasi Pos Propost</td><td><span th:text="${laporan.pekerjaanGarasiPosPropostRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Prasarana</td><td><span th:text="${laporan.pekerjaanPrasaranaRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Tanah, Pondasi dan Beton</td><td><span th:text="${laporan.pekerjaanTanahPondasiBetonRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Menara</td><td><span th:text="${laporan.pekerjaanMenaraRealisasi}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan HR</td><td><span th:text="${laporan.pekerjaanHrRealisasi}"></span> %</td>
+                            </tr>
+
+                            <tr>
+                                <td>TOTAL</td><td><span id="totalBobot" th:text="${laporan.progressMingguIni}"></span> %</td>
+                            </tr>
+                        </table>-->
+                        <table style="width:100%" border="1">
+                            <tr style="background-color:#c3d69b">
+                                <td colspan="3">LAPORAN PROGRESS</td>
+                            </tr>
+                            <tr>
+                                <td>RENCANA PROGRESS S/D MINGGU INI</td>
+                                <td><span th:text="${laporan.rencanaProgressMingguIni}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>REALISASI PROGRESS S/D MINGGU INI</td>
+                                <td><span th:text="${laporan.progressMingguIni}"></span> %</td>
+                            </tr>
+                            <tr>
+                                <td>DEVIASI</td>
+                                <td><span th:text="${laporan.deviasi}"></span> %</td>
+                            </tr>
+                        </table>
+                        <table style="width:100%"  border="1">
+                            <tr style="background-color:#c3d69b">
+                                <td>ITEM PEKERJAAN</td><td>RENCANA</td><td>REALISASI</td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Struktur</td>
+                                <td><span id="pekerjaanStrukturRencana" th:text="${laporan.pekerjaanStrukturRencana}"></span> % </td>
+                                <td><span id="pekerjaanStrukturRealisasi" th:text="${laporan.pekerjaanStrukturRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Persiapan</td>
+                                <td><span id="pekerjaanPersiapanRencana" th:text="${laporan.pekerjaanPersiapanRencana}"></span> % </td>
+                                <td><span id="pekerjaanPersiapanRealisasi" th:text="${laporan.pekerjaanPersiapanRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Bongkaran</td>
+                                <td><span id="pekerjaanBongkaranRencana" th:text="${laporan.pekerjaanBongkaranRencana}"></span> % </td>
+                                <td><span id="pekerjaanBongkaranRealisasi" th:text="${laporan.pekerjaanBongkaranRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Pasang Dinding dan Lantai</td>
+                                <td><span id="pekerjaanPasangDindingLantaiRencana" th:text="${laporan.pekerjaanPasangDindingLantaiRencana}"></span> % </td>
+                                <td><span id="pekerjaanPasangDindingLantaiRealisasi" th:text="${laporan.pekerjaanPasangDindingLantaiRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Kusen, Pintu/Jendela dan Alat Penggantung</td>
+                                <td><span id="pekerjaanKusenPintuJendelaPenggantungRencana" th:text="${laporan.pekerjaanKusenPintuJendelaPenggantungRencana}"></span> % </td>
+                                <td><span id="pekerjaanKusenPintuJendelaPenggantungRealisasi" th:text="${laporan.pekerjaanKusenPintuJendelaPenggantungRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Atap dan Plafoud</td>
+                                <td><span id="pekerjaanAtapPlafoundRencana" th:text="${laporan.pekerjaanAtapPlafoundRencana}"></span> % </td>
+                                <td><span id="pekerjaanAtapPlafoundRealisasi" th:text="${laporan.pekerjaanAtapPlafoundRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Inst. Listrik, Air dan Sanitair</td>
+                                <td><span id="pekerjaanListrikAirSanitairRencana" th:text="${laporan.pekerjaanListrikAirSanitairRencana}"></span> % </td>
+                                <td><span id="pekerjaanListrikAirSanitairRealisasi" th:text="${laporan.pekerjaanListrikAirSanitairRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Pengecetan</td>
+                                <td><span id="pekerjaanPengecetanRencana" th:text="${laporan.pekerjaanPengecetanRencana}"></span> % </td>
+                                <td><span id="pekerjaanPengecetanRealisasi" th:text="${laporan.pekerjaanPengecetanRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Garasi Pos Propost</td>
+                                <td><span id="pekerjaanGarasiPosPropostRencana" th:text="${laporan.pekerjaanGarasiPosPropostRencana}"></span> % </td>
+                                <td><span id="pekerjaanGarasiPosPropostRealisasi" th:text="${laporan.pekerjaanGarasiPosPropostRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Prasarana</td>
+                                <td><span id="pekerjaanPrasaranaRencana" th:text="${laporan.pekerjaanPrasaranaRencana}"></span> % </td>
+                                <td><span id="pekerjaanPrasaranaRealisasi" th:text="${laporan.pekerjaanPrasaranaRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Tanah, Pondasi dan Beton</td>
+                                <td><span id="pekerjaanTanahPondasiBetonRencana" th:text="${laporan.pekerjaanTanahPondasiBetonRencana}"></span> % </td>
+                                <td><span id="pekerjaanTanahPondasiBetonRealisasi" th:text="${laporan.pekerjaanTanahPondasiBetonRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan Menara</td>
+                                <td><span id="pekerjaanMenaraRencana" th:text="${laporan.pekerjaanMenaraRencana}"></span> % </td>
+                                <td><span id="pekerjaanMenaraRealisasi" th:text="${laporan.pekerjaanMenaraRealisasi}"></span> % </td>
+                            </tr>
+                            <tr>
+                                <td>Pekerjaan HR</td>
+                                <td><span id="pekerjaanHrRencana" th:text="${laporan.pekerjaanHrRencana}"></span> % </td>
+                                <td><span id="pekerjaanHrRealisasi" th:text="${laporan.pekerjaanHrRealisasi}"></span> % </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>TOTAL</td>
+                                <td><span id="totalPekerjaanRencana" th:text="${laporan.rencanaProgressMingguIni}"></span> % </td>
+                                <td><span id="totalPekerjaanRealisasi" th:text="${laporan.progressMingguIni}"></span> % </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%">
+                            <tr style="background-color:#c3d69b">
+                                <td colspan="3">PERMASALAHAN DAN HAMBATAN</td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <span th:text="${laporan.permasalahanHambatan}"></span>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%">
+                            <tr style="background-color:#c3d69b">
+                                <td colspan="3">PENYELESAIAN MASALAH</td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <span th:text="${laporan.penyelesaianMasalah}"></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="3" style="text-align:center" valign="top">
+                        <table>
+                            <tr>
+                                <td colspan="3">
+                                </td>
+                            </tr>
+                        </table>	
+                        <table style="width:100%">
+                            <tr style="background-color:#c3d69b">
+                                <td colspan="3">RENCANA KERJA MINGGU YANG AKAN DATANG</td>
+
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <span th:text="${laporan.rencanaMingguYangAkanDatang}"></span>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:100%">
+                            <tr style="background-color:#c3d69b">
+                                <td colspan="3">KURVA S</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+                                    <script type="text/javascript">
+//                                        
+                                    </script>
+                                    <div id="stock_div" style="width:700px;height:300px;"></div>						</td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="3" style="text-align:center" valign="top">
+                        <table border="1">
+                            <!--<tr>
+                                    <td>
+                                            Konsultan MK Wilayah
+                                    </td>
+                                    <td>:</td>
+                                    <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                    <td>
+                                            - Team leader MK Wilayah
+                                    </td>
+                                    <td>:</td>
+                                    <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                    <td>
+                                            - Co Leader
+                                    </td>
+                                    <td>:</td>
+                                    <td colspan="2"></td>
+                            </tr>-->
+                            <tr>
+                                <td>
+                                    Kontraktor Pelaksana
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.kontraktorPelaksana}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    - PM
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.pm}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    - Kontak PM
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.teleponPm}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    - SM
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.sm}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    - Kontak SM
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.teleponSm}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Pengawas Lapangan
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.pengawasLapangan}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Telepon Pengawas Lapangan
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.teleponPengawasLapangan}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    No Kontrak
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.noKontrak}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tanggal Kontrak
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.tanggalKontrak}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tanggal Akhir Kontrak
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.tanggalAkhirKontrak}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    No SPMK
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.noSpmk}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Tanggal SPMK
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.tanggalSpmk}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Nilai Kontrak
+                                </td>
+                                <td>:</td>
+                                <td colspan="2">Rp. <span th:text="${lokasi.nilaiKontrak}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Amandemen Kontrak 1
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.amandemenKontrak1}"></span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Nilai Addendum 1
+                                </td>
+                                <td>:</td>
+                                <td>Rp. <span th:text="${lokasi.nilaiAddendum1}"></span></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Type Bangunan
+                                </td>
+                                <td>:</td>
+                                <td><span th:text="${lokasi.typeBangunan}"></span></td>
+                                <td>Jumlah Lt:<span th:text="${lokasi.jumlahLantai}"></span></td>
+
+                            </tr>
+<!--                            <tr>
+                                <td>
+                                    Lembaga Penerima
+                                </td>
+                                <td>:</td>
+                                <td colspan="2"><span th:text="${lokasi.lembagaPenerima}"></span></td>
+                            </tr>-->
+                            <tr>
+                                <td>
+                                    Jangka Waktu Pelaksanaan
+                                </td>
+                                <td>:</td>
+                                <td><span id="jangkaWaktuPelaksanaanMinggu"></span> Minggu</td>
+                                <td><span id="jangkaWaktuPelaksanaan" th:text="${lokasi.jangkaWaktuPelaksanaan}"></span> Hari</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Waktu Pelaksanaan
+                                </td>
+                                <td>:</td>
+                                <td><span id="waktuPelaksanaanMinggu" th:text="${laporan.laporanPeriodeMingguKe}"></span> Minggu</td>
+                                <td><span id="waktuPelaksanaan"></span> Hari</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Sisa Waktu Pelaksanaan
+                                </td>
+                                <td>:</td>
+                                <td><span id="sisaWaktuPelaksanaanMinggu"></span> Minggu</td>
+                                <td><span id="sisaWaktuPelaksanaan"></span> Hari</td>
+                            </tr>
+                        </table>
+                        <!--<table style="width:100%">
+                                <tr style="background-color:#c3d69b">
+                                        <td colspan="7">FOTO DOKUMENTASI/VISUAL KEGIATAN</td>
+                                </tr>
+                                <tr>
+                                        <td style="height:250px;" valign="top">
+                                        &nbsp;<table>
+                                                <tr>
+
+
+
+
+                                                                </tr><tr><td><img src="http://202.51.111.123/progress/assets/uploads/progress/thumbs/35883-6.jpg" style="width:120px"></td><td><img src="http://202.51.111.123/progress/assets/uploads/progress/thumbs/37b68-7.jpg" style="width:120px"></td><td><img src="http://202.51.111.123/progress/assets/uploads/progress/thumbs/a620a-8.jpg" style="width:120px"></td><td><img src="http://202.51.111.123/progress/assets/uploads/progress/thumbs/194d3-9.jpg" style="width:120px"></td>								</tr>
+                                        </table>
+                                        </td>
+                                </tr>
+                        </table>-->	
+
+                    </td>
+                </tr>
+<!--                <tr>
+                    <td colspan="12">
+                        <table style="width:100%">
+                            <tr style="background-color:#c3d69b">
+                                <td colspan="6">TANGGAPAN DAN SARAN</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">PEJABAT TERKAIT/SATKER</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><span th:text="${laporan.saranDariKonsultanMkWilayah}"></span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="6">PEJABAT PEMBUAT KOMITMEN</td>
+                            </tr>
+                            <tr>
+                                <td colspan="6"><span th:text="${laporan.tanggapanSaranPpk}"></span></td>
+                            </tr>
+
+                        </table>
+
+                    </td>
+
+
+
+                </tr>-->
+
+            </table>
+
+            <div class="pagebreak"> </div>
+            <table border="1" style="width:100%">
+                <tr>
+                    <td colspan="4" align="center" style="background:#ccc">DOKUMENTASI PEKERJAAN</td>
+                </tr>
+                <tr>
+                    <td align="center">
+<!--                        <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12" th:each="element : ${mingguanGambar}" style="padding: 5px">
+                            <img th:src="${element.getFile()}" style="width:125px;"/>
+                        </div>-->
+                        <table style="margin-top:10px;margin-bottom:10px ">
+                            <tr>
+                            </tr>
+                            <tr th:each="element,status : ${mingguanGambar}" th:remove="tag">
+                                    <div th:if="${status.index % 4 ==0}" th:remove="tag" th:utext="${trBuka}">
+                                    </div>
+                                        <td style="padding: 5px;">
+                                            <table border="1" align="center">
+                                                <tr valign="top">
+                                                    <td align="center"><a class="example-image-link" th:href="${element.getFile()}" data-lightbox="example-set" data-title=""><img th:src="${element.getFile()}" style="width:220px"/></a>
+                                                    </td></tr>
+                                                
+
+                                            </table>
+                                        </td>
+                                    <div th:if="${ (status.index +1) % 4 ==0 || (status.index+1) == mingguanGambarCount}" th:remove="tag" th:utext="${trTutup}">
+                                    </div>
+                            </tr>	
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+            <div class="pagebreak"> </div>
+            <table border="1" style="width:100%">
+                <tr>
+                    <td colspan="4" align="center" style="background:#ccc">BUKTI LAPANGAN</td>
+                </tr>
+                <tr>
+                    <td align="center">
+<!--                        <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12" th:each="element : ${buktiGambar}" style="padding: 5px">
+                            <img th:src="${element.getFile()}" style="width:125px;"/>
+                        </div>-->
+                        <table style="margin-top:10px;margin-bottom:10px ">
+                            <tr>
+                            </tr>
+                            <tr th:each="element,status : ${buktiGambar}" th:remove="tag">
+                                    <div th:if="${status.index % 4 ==0}" th:remove="tag" th:utext="${trBuka}">
+                                    </div>
+                                        <td style="padding: 5px;">
+                                            <table border="1" align="center">
+                                                <tr valign="top">
+                                                    <td align="center"><a class="example-image-link" th:href="${element.getFile()}" data-lightbox="example-set" data-title=""><img th:src="${element.getFile()}" style="width:220px"/></a>
+                                                    </td></tr>
+                                                
+
+                                            </table>
+                                        </td>
+                                    <div th:if="${ (status.index +1) % 4 ==0 || (status.index+1) == buktiGambarCount}" th:remove="tag" th:utext="${trTutup}">
+                                    </div>
+                            </tr>	
+                        </table>
+                    </td>
+                </tr>
+
+            </table>
+
+
+            </div>
+        </div>
+</body>
+</html>

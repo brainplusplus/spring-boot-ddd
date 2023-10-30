@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Master Laporan Mingguan Page</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div th:fragment="footer" th:remove="tag">
+            <script th:src="@{~/js/master/master_laporan_mingguan/index.js}"></script>
+        </div>
+        <div th:fragment="content">
+            <div id="varId" style="display:none;" th:text="${id}"></div>
+            <div id="divListData">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="">
+                            <div class="box-header">
+                                <h3 class="box-title"><i class="fa fa-print"></i> Master Laporan Mingguan</h3>
+
+                                <table class="table table-hover table-light">
+                                    <input type="hidden" id="prev" th:value="${role}"/>
+                                    <tr><td>Paket </td><td> : <b><span th:text="${paket}"></span></b></td></tr>
+                                    <tr><td>Lokasi </td><td> : <b><span th:utext="${lokasi}"></span></b></td></tr>
+                                </table>
+
+                                <p style="padding-top: 10px;">
+
+                                </p>
+                                <div class="row" style="margin-bottom: 10px;">
+                                    <div class="col-md-3" id="createBtn"><button type="button" class="btn btn-primary" onclick="gotoNew()"><i class="fa fa-plus"> </i> Create</button></div>
+                                    <div class="col-md-3" style="margin-top:5px;">
+                                        <input type="number" data-role="number" id="searchNama" name="nama" class="form-control" placeholder="Enter Search"/>
+                                    </div>
+                                    <div class="col-md-1" style="margin-top:5px;">
+                                        <button type="button" class="btn btn-primary" onclick="reloadGrid()">Search</button>
+                                    </div>
+                                </div><!-- /.box-header -->
+                                <div class="box-body">
+
+                                    <table id="grid" class="table table-striped dt-responsive table-bordered" cellspacing="0" width="100%">
+                                        <thead >
+                                            <tr  >
+
+                                                <th field="laporanPeriodeMingguKe">Laporan Minggu <br/> Ke-</th>
+                                                <th field="tanggalDari">Tanggal Dari</th>
+                                                <th field="tanggalSampai">Tanggal Sampai</th>
+                                                <th field="rencanaProgressMingguIni">Rencana S/D <br/>Minggu Ini (%)</th>
+                                                <th field="progressMingguIni">Realisasi S/D <br/> Minggu Ini (%)</th>
+                                                <th field="totalSerapan">Total Serapan (%)</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+                                </div><!-- /.box-body -->
+                            </div><!-- /.box -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div>
+            </div>
+
+            <div id="divFormData" style=";">
+
+            </div>
+        </div>
+    </body>
+</html>

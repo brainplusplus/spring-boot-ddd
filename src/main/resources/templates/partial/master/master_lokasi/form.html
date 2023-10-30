@@ -1,0 +1,408 @@
+<div class="row">
+    <!-- left column -->
+    <div class="col-md-12">
+        <!-- general form elements -->
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Form Lokasi Survey</h3>
+            </div>
+            <div id="status">
+
+            </div>
+            <div class="page-content-inner">
+                <div class="row">
+                    <form id="formData" role="form" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="id" id="id" value="0"/>
+                        <div class="col-md-6">
+                            <div class="portlet light bordered">
+                                <!--                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-building"></i>Data Survey </div>
+                                                                    <div class="tools">
+                                                                        <a href="javascript:;" class="collapse"> </a>
+                                                                        <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                                                                        <a href="javascript:;" class="reload"> </a>
+                                                                        <a href="javascript:;" class="remove"> </a>
+                                                                    </div>
+                                                                </div>-->
+                                <div class="portlet-body form">
+                                    <!--                            <div class="form-actions top">
+                                                                    <button type="submit" class="btn green">Submit</button>
+                                                                    <button type="button" class="btn default">Cancel</button>
+                                                                </div>-->
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="control-label">Provinsi</label>
+                                            <select id="kode_prov" name="prov_kode" type="text" class="form-control" placeholder="Enter text" onChange="getKabupaten()"></select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Kabupaten</label>
+                                            <select id="kode_kab" name="kab_kode" type="text" class="form-control" placeholder="Enter text"></select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Paket</label>
+                                            <select id="paket" name="paket_id" type="text" class="form-control" placeholder="Enter text"></select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nama Lokasi</label>
+                                            <input id="nama_lokasi" name="namaLokasi" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Kategori Kegiatan</label>
+                                            <select id="kategory_kegiatan" name="kategoriKegiatan" type="text" class="form-control" placeholder="Enter text">
+                                                <option value="PEMBANGUNANAN">PEMBANGUNAN</option>
+                                                <option value="HARBANG">HARBANG</option>
+                                                <option value="HARPRASLAT">HARPRASLAT</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Tahun</label>
+                                            <select id="tahun_form" name="tahun" class="form-control">
+                                                <option selected="selected" disabled="disabled">-- Pilih Tahun --</option>
+                                            </select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Lattitude</label>
+                                            <input id="lat" name="lattitude" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Longitude</label>
+                                            <input id="long" name="longitude" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nama Lembaga Pengusul</label>
+                                            <input id="nama_lembaga_pengusul" name="namaLembagaPengusul" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Alamat</label>
+                                            <textarea id="alamat" name="alamat" type="text" class="form-control" placeholder="Enter text"></textarea>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Kontraktor Pelaksana</label>
+                                            <input id="kontraktor_pelaksana" name="kontraktorPelaksana" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">PM</label>
+                                            <input id="pm" name="pm" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Telepon PM</label>
+                                            <input id="telepon_pm" name="teleponPm" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">SM</label>
+                                            <input id="sm" name="sm" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Telepon SM</label>
+                                            <input id="telepon_sm" name="teleponSm" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Keterangan</label>
+                                            <textarea id="keterangan" name="keterangan" type="text" class="form-control" placeholder="Enter text"></textarea>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Rekomendasi</label>
+                                            <textarea id="rekomendasi" name="rekomendasi" type="text" class="form-control" placeholder="Enter text"></textarea>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">No Kontrak</label>
+                                            <input id="no_kontrak" name="noKontrak" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Tanggal Kontrak</label>
+                                            <input id="tanggal_kontrak" name="tanggalKontrak" type="date" class="form-control form-control-inline input-medium date-picker"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Tanggal Akhir Kontrak</label>
+                                            <input id="tanggal_akhir_kontrak" name="tanggalAkhirKontrak" type="date" class="form-control form-control-inline input-medium date-picker"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">No SPMK</label>
+                                            <input id="no_smpk" name="noSpmk" type="text" class="form-control" placeholder="Enter text" value="0"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Tanggal SPMK</label>
+                                            <input id="tanggal_spmk" name="tanggalSpmk" type="date" class="form-control form-control-inline input-medium date-picker"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nilai Kontrak</label>
+                                            <input id="nilai_kontrak" name="nilaiKontrak" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Amandemen Kontrak 1</label>
+                                            <input id="amandemen_kontrak_1" name="amandemenKontrak1" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nilai Addendum 1</label>
+                                            <input id="nilai_addendum_1" name="nilaiAddendum1" type="text" class="form-control" placeholder="Enter text" value="0"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Lembaga Penerima</label>
+                                            <input id="lembaga_penerima" name="lembagaPenerima" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Type Bangunan</label>
+                                            <input id="type_bangunan" name="typeBangunan" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Jumlah Lantai</label>
+                                            <input id="jumlah_lantai" name="jumlahLantai" type="number" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Jangka Waktu Pelaksanaan</label>
+                                            <input id="jangka_waktu_pelaksanaan" name="jangkaWaktuPelaksanaan" type="number" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Pekerjaan Persiapan</label>
+                                            <input id="pekerjaan_persiapan" name="pekerjaanPersiapan" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Pekerjaan Struktur</label>
+                                            <input id="pekerjaan_struktur" name="pekerjaanStruktur" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Pekerjaan Arsitektur</label>
+                                            <input id="pekerjaan_arsitektur" name="pekerjaanArsitektur" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Pekerjaan M / E</label>
+                                            <input id="pekerjaan_mep" name="pekerjaanMep" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="portlet light bordered">
+                                <!--                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-file"></i>Data Tambahan </div>
+                                                                    <div class="tools">
+                                                                        <a href="javascript:;" class="collapse"> </a>
+                                                                        <a href="#portlet-config" data-toggle="modal" class="config"> </a>
+                                                                        <a href="javascript:;" class="reload"> </a>
+                                                                        <a href="javascript:;" class="remove"> </a>
+                                                                    </div>
+                                                                </div>-->
+                                <div class="portlet-body form">
+
+                                    <!--                            <div class="form-actions top right">
+                                                                    <button type="submit" class="btn green">Submit</button>
+                                                                    <button type="button" class="btn default">Cancel</button>
+                                                                </div>-->
+                                    <div class="form-body">
+                                        <div class="form-group">
+                                            <label class="control-label">Nama Surveyor</label>
+                                            <input id="nama_surveyor" name="namaSurveyor" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Nama Konsultan MK</label>
+                                            <input id="nama_konsultan_mk" name="namaKonsultanMk" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Team Leader</label>
+                                            <input id="team_leader" name="teamLeader" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Telepon Team Leader</label>
+                                            <input id="telepon_team_leader" name="teleponTeamLeader" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Co Leader</label>
+                                            <input id="co_leader" name="coLeader" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Telepon Co Leader</label>
+                                            <input id="telepon_co_leader" name="teleponCoLeader" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Pengawas Lapangan</label>
+                                            <input id="pengawas_lapangan" name="pengawasLapangan" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Telepon Pengawas Lapangan</label>
+                                            <input id="telepon_pengawas_lapangan" name="teleponPengawasLapangan" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Tanggal Survey</label>
+                                            <input id="tanggal_survey" name="tanggalSurvey" type="date" class="form-control form-control-inline input-medium date-picker"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Kontak Person</label>
+                                            <input id="kontak_person" name="kontakPerson" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Target Grup</label>
+                                            <input id="target_grup" name="targetGrup" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Dimensi Lantai</label>
+                                            <input id="dimensi_lantai" name="dimensiLantai" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Peruntukan</label>
+                                            <input id="peruntukan" name="peruntukan" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Unit</label>
+                                            <input id="unit" name="unit" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Tower</label>
+                                            <input id="tower" name="tower" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Lokasi</label>
+                                            <input id="lokasi" name="lokasi" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">HPS</label>
+                                            <input id="hps" name="hps" type="text" class="form-control" placeholder="Enter text" value="0"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">No Paket Fisik</label>
+                                            <input id="no_paket_fisik" name="noPaketFisik" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Jumlah TB</label>
+                                            <input id="jml_tb" name="jmlTb" type="text" class="form-control" placeholder="Enter text" value="0"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Lebar Jalan Kondisi Akses</label>
+                                            <textarea id="lebar_jalan_kondisi_akses" name="lebarJalanKondisiAkses" type="text" class="form-control" placeholder="Enter text"></textarea>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Sumber Listrik Jarak Lokasi</label>
+                                            <input id="sumber_listrik_jarak_lokasi" name="sumberListrikJarakLokasi" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Sumber Air Jarak Lokasi</label>
+                                            <input id="sumber_air_jarak_lokasi" name="sumberAirJarakLokasi" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Jarak dengan pusat kegiatan</label>
+                                            <input id="jarak_dengan_pusat_kegiatan" name="jarakDenganPusatKegiatan" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Luas Lahan Usulan</label>
+                                            <input id="luas_lahan_usulan" name="luasLahanUsulan" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Status Tanah</label>
+                                            <input id="status_tanah" name="statusTanah" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Jenis Tanah</label>
+                                            <input id="jenis_tanah" name="jenisTanah" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Kondisi Fisik</label>
+                                            <input id="kondisi_fisik" name="kondisiFisik" type="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <hr></hr>
+                                        <div class="form-group">
+                                            <label class="control-label">Pengawas :</label>
+                                            <select id="pengawas" name="idUserPengawas" class="form-control"></select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Rekanan :</label>
+                                            <select id="rekanan" name="idUserRekanan" class="form-control"></select>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Kurva S Rencana</label>
+                                            <div id="krv" hidden="hidden">
+                                                <img id="img_krv" type="image"  style="width: 150px; height: 150px"/>
+                                                <a onclick="hapusKrv()">Hapus</a>
+                                            </div>
+                                            <input id="kurva_s_rencana" name="rencana_kurva_s" type="file" data-role="text" class="form-control" placeholder="Enter text"/>
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label">Gambar Rencana</label>
+                                            <div id="gbr" hidden="hidden">
+                                                <img id="img_gbr" type="image" style="width: 150px; height: 150px"/>
+                                                <a onclick="hapusGbr()">Hapus</a>
+                                            </div>
+                                            <input id="gambar_rencana" name="rencana_gambar" type="file" data-role="text" class="form-control" placeholder="Enter text"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions right">
+                                        <button type="button" class="btn blue" onclick="submitForm()" ><i class="fa fa-save"></i>&nbsp;Submit </button>
+                                        <button type="button" class="btn default" onclick="backToListData()" ><i class="fa fa-backward"></i>&nbsp;Cancel </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="footer" th:remove="tag">
+    <script th:src="@{~/js/master/master_lokasi/form.js}"></script>
+</div>

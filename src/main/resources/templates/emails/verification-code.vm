@@ -1,0 +1,8 @@
+<html>  
+<body>  
+<h3>Hi ${session.verificationCode}, we are testing registration confirmation :)!</h3>  
+<div>  
+    Your email address is <a href="mailto:${user.email}">${user.username}</a>.  
+</div>  
+</body>  
+</html>  

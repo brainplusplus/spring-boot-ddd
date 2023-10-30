@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Dashboard Satuan Kerja</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <style>
+            h2.title {
+                text-transform: uppercase;
+                font-weight: bold;
+                text-align: center;
+            }
+            tr.content{
+                font-weight: bold !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div th:fragment="footer" th:remove="tag">
+        </div>
+        <div th:fragment="content">
+            <center><h2 class="title" style="font-weight:bold">DASHBOARD SATUAN KERJA</h2></center>
+
+            <div class="table-responsive">
+                <table class="table-dashboard" border="1">
+                    <thead style="font-size:18px">
+                        <tr>
+                            <th rowspan="2">NO</th>
+                            <th rowspan="2">NAMA SATJAR</th>
+                            <th rowspan="2">JUMLAH SATUAN</th>
+                            <th rowspan="2">LOKASI</th>
+                            <th colspan="3">Progress Fisik</th>
+                            <th colspan="2">STATUS</th>
+                        </tr>
+                        <tr>
+                            <th>RENCANA (%)</th>
+                            <th>REALISASI (%)</th>
+                            <th>DEVIASI (%)</th>
+                            <th>CEPAT</th>
+                            <th>LAMBAT</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:18px;">
+                        <tr style="font-weight:bold" th:each="element, row:  ${dataDashboardSatker}">
+                            <td style="text-align:center" th:text="${row.index + 1}">id</td>
+                            <td>
+                                <a th:href="@{/admin/dashboard/ppk/{id}(id=${element.id})}" th:text="${element.namaSatker}"></a>
+                            </td>
+                            <td style="text-align:center" th:text="${element.jumlahSatuan}">jumlahSatuan</td>
+                            <td style="text-align:center" th:text="${element.lokasi}">lokasi</td>
+                            <td style="text-align:center" th:text="${element.getRencana()}">rencana</td>
+                            <td style="text-align:center" th:text="${element.getRealisasi()}">realisasi</td>
+                            <td style="text-align:center" th:text="${element.getDeviasi()}"
+                                th:classappend="${element.getDeviasiBackColor()}">getDeviasi
+                            </td>
+                            <td style="text-align:center" th:text="${element.getCepatString()}">cepat</td>
+                            <td style="text-align:center; background:#FAAC58" th:text="${element.getLambatString()}">lambat</td>
+                        </tr>
+                        <tr style="font-weight:bold">
+                            <td></td>
+                            <td><b>JUMLAH</b></td>
+                            <td style="text-align:center" th:text="${jumlahSatuan}"></td>
+                            <td style="text-align:center" th:text="${jumlahLokasi}"></td>
+                            <td style="text-align:center" th:text="${avgRencana}"></td>
+                            <td style="text-align:center" th:text="${avgRealisasi}"></td>
+                            <td style="text-align:center" th:text="${avgDeviasi}" th:classappend="${avgDeviasiBackColor}"></td>
+                            <td style="text-align:center" th:text="${jumlahCepat}">29 lokasi</td>
+                            <td style="text-align:center; background:#FAAC58" th:text="${jumlahLambat}">40 lokasi</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

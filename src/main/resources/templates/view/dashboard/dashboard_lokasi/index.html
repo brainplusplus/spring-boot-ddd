@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Dashboard Lokasi</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div th:fragment="footer" th:remove="tag">
+            <script th:src="@{~/js/master/master_gambar_lokasi/index.js}"></script>
+        </div>
+        <div th:fragment="content">
+            <center><H2 style="text-transform: uppercase;font-weight:bold" th:text="${namaPaket}" ></H2> </center>
+            <div class="table-responsive">
+                <table class="table-dashboard " border="1">
+                    <thead style="font-size:18px">
+                        <tr>
+                            <th rowspan="2">No</th>
+                            <th rowspan="2">Propinsi</th>
+                            <th rowspan="2">Kabupaten</th>
+                            <th rowspan="2">Jenis Pekerjaan</th>
+                            <th colspan="3">Progress Fisik</th>
+                            <th rowspan="2">Real Penyerapan (%)</th>
+                            <!--<th rowspan="2">Status</th>-->
+
+                        </tr>
+                        <tr>
+                            <th style="text-align:center;">Rencana (%)</th>
+                            <th style="text-align:center;">Realisasi (%)</th>
+                            <th style="text-align:center;">Deviasi (%)</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:18px;font-weight: bold;">
+                        <tr th:each="element, row: ${dataDashboardLokasi}">
+                            <td style="text-align:center" th:text="${row.index + 1}">id</td>
+                            <td>
+                                <a th:href="@{/admin/master/master_laporan_mingguan/laporan/{laporanId}(laporanId=${element.idLaporanMingguan})}"
+                                   th:text="${element.propinsi}"></a>
+                            </td>
+                            <td style="text-align:left" th:text="${element.propinsi}">propinsi</td>
+                            <td style="text-align:left" th:text="${element.jenisPekerjaan}">jenisPekerjaan</td>
+                            <td style="text-align:center" th:text="${element.getRencana()}">rencana</td>
+                            <td style="text-align:center" th:text="${element.getRealisasi()}">realisasi</td>
+                            <td style="text-align:center" th:text="${element.ambilDeviasi()}"
+                                th:classappend="${element.ambilDeviasiLokasiBackColor()}">deviasi
+                            </td>
+                            <td style="text-align:center" th:text="${element.getPenyerapan()}">penyerapan</td>
+                            <!--<td style="text-align:center" th:text="${element.statusInput}">statusInput</td>-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+    <script>
+        $('.table-dashboard').DataTable({
+            responsive: true
+        });
+    </script>
+</html>

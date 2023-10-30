@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.app</groupId>
+    <artifactId>aplikasi-kostrad</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    
+
+    <name>Aplikasi Kostrad</name>
+    <description>Mengelola assets secara online</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.2.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>    
+        <tomcat.version>8.0.3</tomcat.version>
+    </properties>
+    <dependencies>
+    	<dependency>
+    		 <groupId>com.mortennobel</groupId>
+			 <artifactId>java-image-scaling</artifactId>
+			<version>0.8.6</version>
+    	</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+		
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901-1.jdbc4</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.jasperreports</groupId>
+            <artifactId>jasperreports</artifactId>
+            <version>6.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.12</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+        	<groupId>net.sf.dozer</groupId>
+        	<artifactId>dozer</artifactId>
+        </dependency>
+        <!-- sending email -->  
+     <dependency>  
+       <groupId>javax.mail</groupId>  
+       <artifactId>javax.mail-api</artifactId>  
+       <version>1.5.5</version>  
+     </dependency>  
+     <dependency>  
+       <groupId>com.sun.mail</groupId>  
+       <artifactId>javax.mail</artifactId>  
+       <version>1.5.5</version>  
+     </dependency>  
+     <!-- volocity template -->  
+     <dependency>  
+       <groupId>org.apache.velocity</groupId>  
+       <artifactId>velocity</artifactId>  
+     </dependency>  
+     <dependency>  
+       <groupId>org.apache.velocity</groupId>  
+       <artifactId>velocity-tools</artifactId>  
+     </dependency>  
+    </dependencies>
+	
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+	
+
+    <dependencyManagement>
+    	<dependencies>
+    		<dependency>
+    			<groupId>net.sf.dozer</groupId>
+    			<artifactId>dozer</artifactId>
+    			<version>5.4.0</version>
+    		</dependency>
+    	</dependencies>
+    </dependencyManagement>
+</project>

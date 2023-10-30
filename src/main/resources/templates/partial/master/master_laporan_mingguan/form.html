@@ -1,0 +1,275 @@
+<div th:fragment="jscontent" th:remove="tag">
+	<script th:src="@{~/js/master/master_laporan_mingguan/form.js}"></script>
+</div>
+
+<div class="row">
+	<!-- left column -->
+	<div class="col-md-12">
+		<!-- general form elements -->
+		<div class="box box-primary">
+			<div class="box-header">
+				<h3 class="box-title">Form Laporan Mingguan</h3>
+				<h3 class="box-title">
+					Paket: <span th:text="${paket}"></span>
+				</h3>
+				<h3 class="box-title">
+					Lokasi: <span th:utext="${lokasi}"></span>
+				</h3>
+			</div>
+			<!-- /.box-header -->
+			<!-- form start -->
+			<form id="formData" role="form" method="post"
+				enctype="multipart/form-data">
+				<div class="box-body">
+					<input type="hidden" name="id" id="id" value="0" /> <input
+						type="hidden" name="lokasiId" id="lokasiId" value="0" />
+					<div class="form-group">
+						<label class="control-label">Laporan Periode Minggu Ke-:</label> <select
+							id="laporanPeriodeMingguKe" name="laporanPeriodeMingguKe"
+							data-role="combo" class="form-control">
+
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Tanggal Dari:</label> <input id="tanggalDari"
+							name="tanggalDari" type="date"
+							class="form-control form-control-inline input-medium date-picker"
+							placeholder="Enter Tanggal Dari" />
+					</div>
+					<div class="form-group">
+						<label>Tanggal Sampai:</label> <input id="tanggalSampai"
+							name="tanggalSampai" type="date"
+							class="form-control form-control-inline input-medium date-picker"
+							placeholder="Enter Tanggal Sampai" />
+					</div>
+					<!-- <legend>Data Umum</legend>
+                    <div class="form-group">
+                        <label>Waktu Pelaksanaan:</label>
+                        <input id="waktuPelaksanaan" name="waktuPelaksanaan" data-role="text" class="form-control" placeholder="Enter Waktu Pelaksanaan"/>
+                    	
+                    </div>
+                    <div class="form-group">
+                        <label>Sisa Waktu Pelaksanaan:</label>
+                        <input id="sisaWaktuPelaksanaan" name="sisaWaktuPelaksanaan" data-role="text" class="form-control" placeholder="Enter Sisa Waktu Pelaksanaan"/>
+                    	
+                    </div> -->
+					<legend>LAPORAN PROGRESS</legend>
+					<!-- <fieldset disabled> -->
+					<div class="form-group">
+						<label>Rencana Progres S/D Minggu ini:</label> <input
+							id="rencanaProgressMingguIni" name="rencanaProgressMingguIni"
+							data-role="text" class="form-control"
+							placeholder="Enter Rencana Progres S/D Minggu ini" />
+					</div>
+					<div class="form-group">
+						<label>Realisasi Progres S/D Minggu ini:</label> <input
+							id="progressMingguIni" name="progressMingguIni" data-role="text"
+							class="form-control"
+							placeholder="Enter Realisasi Progres S/D Minggu ini" />
+					</div>
+					<div class="form-group">
+						<label>Deviasi:</label> <input id="deviasi" name="deviasi"
+							data-role="text" class="form-control" placeholder="Enter Deviasi" />
+					</div>
+					<!-- </fieldset> -->
+					<table class="table table-bordered tablesorter table-striped">
+						<tbody>
+							<tr>
+								<td>ITEM PEKERJAAN</td>
+								<td>Rencana (%)</td>
+								<td>Relisasi (%)</td>
+							</tr>
+                                                        <tr>
+								<td>Pekerjaan Struktur:</td>
+								<td><input id="pekerjaanStrukturRencana"
+									name="pekerjaanStrukturRencana"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+								<td><input id="pekerjaanStrukturRealisasi"
+									name="pekerjaanStrukturRealisasi"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+							</tr>
+							<tr>
+								<td>Pekerjaan Persiapan:</td>
+								<td><input id="pekerjaanPersiapanRencana"
+									name="pekerjaanPersiapanRencana"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+								<td><input id="pekerjaanPersiapanRealisasi"
+									name="pekerjaanPersiapanRealisasi"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+							</tr>
+                                                        <tr>
+								<td>Bongkaran:</td>
+								<td><input id="pekerjaanBongkaranRencana"
+									name="pekerjaanBongkaranRencana"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+								<td><input id="pekerjaanBongkaranRealisasi"
+									name="pekerjaanBongkaranRealisasi"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+							</tr>
+							<tr>
+								<td>Pekerjaan Pasang Dinding dan Lantai:</td>
+								<td><input id="pekerjaanPasangDindingLantaiRencana"
+									name="pekerjaanPasangDindingLantaiRencana"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+								<td><input id="pekerjaanPasangDindingLantaiRealisasi"
+									name="pekerjaanPasangDindingLantaiRealisasi"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+							</tr>
+							<tr>
+								<td>Pekerjaan Kusen, Pintu/Jendela dan Alat Penggantung:</td>
+								<td><input id="pekerjaanKusenPintuJendelaPenggantungRencana"
+									name="pekerjaanKusenPintuJendelaPenggantungRencana"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+								<td><input id="pekerjaanKusenPintuJendelaPenggantungRealisasi"
+									name="pekerjaanKusenPintuJendelaPenggantungRealisasi"
+									onchange="javascript:hitung_realisasi_rencana()"
+									data-role="text" class="form-control" value="0" /></td>
+							</tr>
+							<tr>
+								<td>Pekerjaan Atap dan Plafoud:</td>
+								<td><input id="pekerjaanAtapPlafoundRencana"
+									name="pekerjaanAtapPlafoundRencana" data-role="text" class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+								<td><input id="pekerjaanAtapPlafoundRealisasi"
+									name="pekerjaanAtapPlafoundRealisasi" data-role="text"
+									class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+							</tr>
+                                                        <tr>
+								<td>Pekerjaan Inst. Listrik, Air dan Sanitair:</td>
+								<td><input id="pekerjaanListrikAirSanitairRencana"
+									name="pekerjaanListrikAirSanitairRencana" data-role="text" class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+								<td><input id="pekerjaanListrikAirSanitairRealisasi"
+									name="pekerjaanListrikAirSanitairRealisasi" data-role="text"
+									class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+							</tr>
+                                                        <tr>
+								<td>Pekerjaan Pengecetan:</td>
+								<td><input id="pekerjaanPengecetanRencana"
+									name="pekerjaanPengecetanRencana" data-role="text" class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+								<td><input id="pekerjaanPengecetanRealisasi"
+									name="pekerjaanPengecetanRealisasi" data-role="text"
+									class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+							</tr>
+                                                        <tr>
+								<td>Pekerjaan Garasi Pos Propost:</td>
+								<td><input id="pekerjaanGarasiPosPropostRencana"
+									name="pekerjaanGarasiPosPropostRencana" data-role="text" class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+								<td><input id="pekerjaanGarasiPosPropostRealisasi"
+									name="pekerjaanGarasiPosPropostRealisasi" data-role="text"
+									class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+							</tr>
+                                                        <tr>
+								<td>Pekerjaan Prasarana:</td>
+								<td><input id="pekerjaanPrasaranaRencana"
+									name="pekerjaanPrasaranaRencana" data-role="text" class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+								<td><input id="pekerjaanPrasaranaRealisasi"
+									name="pekerjaanPrasaranaRealisasi" data-role="text"
+									class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+							</tr>
+                                                        <tr>
+								<td>Pekerjaan Tanah, Pondasi dan Beton:</td>
+								<td><input id="pekerjaanTanahPondasiBetonRencana"
+									name="pekerjaanTanahPondasiBetonRencana" data-role="text" class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+								<td><input id="pekerjaanTanahPondasiBetonRealisasi"
+									name="pekerjaanTanahPondasiBetonRealisasi" data-role="text"
+									class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+							</tr>
+                                                        <tr>
+								<td>Pekerjaan Menara:</td>
+								<td><input id="pekerjaanMenaraRencana"
+									name="pekerjaanMenaraRencana" data-role="text" class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+								<td><input id="pekerjaanMenaraRealisasi"
+									name="pekerjaanMenaraRealisasi" data-role="text"
+									class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+							</tr>
+                                                        <tr>
+								<td>Pekerjaan HR:</td>
+								<td><input id="pekerjaanHrRencana"
+									name="pekerjaanHrRencana" data-role="text" class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+								<td><input id="pekerjaanHrRealisasi"
+									name="pekerjaanHrRealisasi" data-role="text"
+									class="form-control"
+									onchange="javascript:hitung_realisasi_rencana()" value="0" />
+								</td>
+							</tr>
+                                                        
+
+						</tbody>
+					</table>
+					<div class="form-group">
+						<label>Aktivitas Minggu ini:</label>
+						<textarea id="aktifitasPokokMingguIni"
+							name="aktifitasPokokMingguIni" data-role="text"
+							class="form-control" placeholder="Enter Aktivitas Minggu ini"></textarea>
+					</div>
+					<div class="form-group">
+						<label>Rencana Kerja Minggu Yang Akan Datang:</label>
+						<textarea id="rencanaMingguYangAkanDatang"
+							name="rencanaMingguYangAkanDatang" data-role="text"
+							class="form-control"
+							placeholder="Enter Rencana Kerja Minggu Yang Akan Datang"></textarea>
+					</div>
+					<div class="form-group">
+						<label>Permasalahan Hambatan:</label>
+						<textarea id="permasalahanHambatan" name="permasalahanHambatan"
+							data-role="text" class="form-control"
+							placeholder="Enter Permasalahan Hambatan"></textarea>
+					</div>
+					<div class="form-group">
+						<label>Penyelesaian Masalah:</label>
+						<textarea id="penyelesaianMasalah" name="penyelesaianMasalah"
+							data-role="text" class="form-control"
+							placeholder="Enter Penyelesaian Masalah"></textarea>
+					</div>
+				</div>
+				<!-- /.box-body -->
+
+				<div class="box-footer">
+					<button type="button" class="btn btn-primary"
+						onclick="submitForm()">Save</button>
+					<button type="button" class="btn btn-primary"
+						onclick="backToListData();">Back</button>
+				</div>
+			</form>
+		</div>
+		<!-- /.box -->
+	</div>
+</div>
